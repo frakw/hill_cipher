@@ -241,8 +241,8 @@ std::string matrix_to_string(Matrix<T> input) {
 template<typename T>
 std::string encrypt(std::string target, Matrix<T> key) {
 	std::string result;
-	while (target.length() % key.row != 0) {
-		target.push_back(' ');
+	if (target.length() % key.row != 0) {
+		return "invalid message";
 	}
 	for (int i = 0; i < target.length(); i += 3) {
 		Matrix<T> encrypt_matrix = key * string_to_matrix<T>(target.substr(i, 3), 3, 1);
@@ -256,8 +256,8 @@ std::string encrypt(std::string target, Matrix<T> key) {
 template<typename T>
 std::string decrypt(std::string target, Matrix<T> key) {
 	std::string result;
-	while (target.length() % key.row != 0) {
-		target.push_back(' ');
+	if (target.length() % key.row != 0) {
+		return "invalid message";
 	}
 	for (int i = 0; i < target.length(); i += 3) {
 		Matrix<T> decrypt_matrix = key.mod_inverse(26) * string_to_matrix<T>(target.substr(i, 3), 3, 1);
@@ -275,7 +275,7 @@ int main() {
 		2,	2,	19
 	};
 	Matrix<int> key_matrix(3, 3, key);
-	std::string message = "paymoremoney";
+	std::string message = "paymoremoneya";
 	std::cout << "Original message : " << message << "\n\n--------------------------------\n\n";
 	std::cout << "Key matrix : \n";
 	key_matrix.print();
