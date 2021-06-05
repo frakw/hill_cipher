@@ -241,10 +241,7 @@ std::string matrix_to_string(Matrix<T> input) {
 template<typename T>
 std::string encrypt(std::string target, Matrix<T> key) {
 	std::string result;
-	if (target.length() % 3 == 1) {
-		target += "  ";
-	}
-	else if (target.length() % 3 == 2) {
+	while (target.length() % key.row != 0) {
 		target.push_back(' ');
 	}
 	for (int i = 0; i < target.length(); i += 3) {
@@ -259,10 +256,7 @@ std::string encrypt(std::string target, Matrix<T> key) {
 template<typename T>
 std::string decrypt(std::string target, Matrix<T> key) {
 	std::string result;
-	if (target.length() % 3 == 1) {
-		target += "  ";
-	}
-	else if (target.length() % 3 == 2) {
+	while (target.length() % key.row != 0) {
 		target.push_back(' ');
 	}
 	for (int i = 0; i < target.length(); i += 3) {
