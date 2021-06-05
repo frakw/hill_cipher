@@ -275,7 +275,7 @@ int main() {
 		2,	2,	19
 	};
 	Matrix<int> key_matrix(3, 3, key);
-	std::string message = "paymoremoneya";
+	std::string message = "paymoremoney";
 	std::cout << "Original message : " << message << "\n\n--------------------------------\n\n";
 	std::cout << "Key matrix : \n";
 	key_matrix.print();
